@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Acceso Directo a Gmail (Notificador)",
+  "short_name": "Gmail Directo",
+  "version": "1.0.0",
+  "description": "Acceso directo a Gmail con indicador de correos no leídos: en color cuando tienes mensajes nuevos y en blanco y negro cuando no.",
+  "icons": {
+    "16": "icons/color-16.png",
+    "32": "icons/color-32.png",
+    "48": "icons/color-48.png",
+    "128": "icons/color-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/bw-16.png",
+      "32": "icons/bw-32.png",
+      "48": "icons/bw-48.png",
+      "128": "icons/bw-128.png"
+    },
+    "default_title": "Gmail"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "alarms",
+    "storage",
+    "tabs",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*"
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  }
+}

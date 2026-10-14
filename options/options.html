@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración - Acceso Directo a Gmail</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo-wrap">
+        <img src="../icons/color-48.png" alt="Gmail" width="32" height="32" id="headerIcon">
+        <h1>Acceso Directo a Gmail</h1>
+      </div>
+      <span class="version-tag">v1.0.0</span>
+    </header>
+
+    <main class="card">
+      <section class="section">
+        <h2>Cuenta de Gmail</h2>
+        <p class="description">Si tienes varias cuentas de Google iniciadas en el navegador, selecciona cuál deseas monitorear.</p>
+        <div class="field-group">
+          <label for="accountIndex">Índice de la cuenta:</label>
+          <select id="accountIndex">
+            <option value="0">Cuenta Principal (Predeterminada - /u/0/)</option>
+            <option value="1">Segunda Cuenta (/u/1/)</option>
+            <option value="2">Tercera Cuenta (/u/2/)</option>
+            <option value="3">Cuarta Cuenta (/u/3/)</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Frecuencia de comprobación</h2>
+        <p class="description">Intervalo en el que la extensión consulta Gmail cuando no tienes ninguna pestaña de Gmail abierta.</p>
+        <div class="field-group">
+          <label for="checkInterval">Intervalo:</label>
+          <select id="checkInterval">
+            <option value="1">Cada 1 minuto (Recomendado)</option>
+            <option value="2">Cada 2 minutos</option>
+            <option value="5">Cada 5 minutos</option>
+            <option value="10">Cada 10 minutos</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Notificación Visual</h2>
+        <div class="field-checkbox">
+          <input type="checkbox" id="showBadgeCount" checked>
+          <label for="showBadgeCount">
+            <strong>Mostrar contador numérico sobre el icono</strong>
+            <span class="sub-label">Si está desactivado, el icono igualmente cambiará de blanco y negro a color cuando haya correos sin leer, pero sin el número superpuesto.</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="section test-section">
+        <h2>Estado de conexión</h2>
+        <div class="test-panel">
+          <div class="test-preview">
+            <div class="icon-preview-box">
+              <img id="previewIcon" src="../icons/bw-48.png" alt="Icono actual" width="40" height="40">
+              <span id="previewBadge" class="preview-badge" style="display: none;">0</span>
+            </div>
+            <div class="status-info">
+              <div id="statusText" class="status-text">Sin comprobar</div>
+              <div id="statusDetail" class="status-detail">Haz clic en "Probar ahora" para verificar el acceso a tu Gmail.</div>
+            </div>
+          </div>
+          <button type="button" id="btnTest" class="btn btn-secondary">Probar conexión ahora</button>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="button" id="btnSave" class="btn btn-primary">Guardar configuración</button>
+        <span id="saveStatus" class="save-status"></span>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>💡 <em>Tip:</em> Haz clic directamente en el icono de la extensión en la barra de herramientas para abrir Gmail o ir a la pestaña si ya está abierta.</p>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
