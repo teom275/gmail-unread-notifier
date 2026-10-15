@@ -1,20 +1,65 @@
-# Operating System files
-.DS_Store
-Thumbs.db
-desktop.ini
+# ========================================================
+# ARCHIVOS DE CONFIGURACIÓN Y SECRETOS (ZERO-LEAK POLICY)
+# ========================================================
+.env
+.env.*
+!.env.example
+*.secrets
 
-# Node / Dependencies (if any in future)
-node_modules/
+# Claves de firma de extensiones Chrome y certificados
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+
+# Credenciales y tokens de APIs de Google
+credentials.json
+client_secret*.json
+token.json
+token.pickle
+
+# Paquetes y binarios de extensión compilados/empaquetados
+*.crx
+*.zip
+dist/
+build/
+
+# ========================================================
+# LOGS Y REGISTROS
+# ========================================================
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Temporary files
+# ========================================================
+# ARCHIVOS TEMPORALES Y DEL SISTEMA OPERATIVO
+# ========================================================
+.DS_Store
+Thumbs.db
+desktop.ini
 *.tmp
+*.temp
 *.bak
 *.swp
-*.log
+*.swo
 
-# IDE and Editor files
+# ========================================================
+# EDITORES E IDE
+# ========================================================
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+.zed/
+
+# ========================================================
+# DEPENDENCIAS NODE (SI SE USAN EN EL FUTURO)
+# ========================================================
+node_modules/

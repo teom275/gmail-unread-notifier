@@ -78,3 +78,16 @@ Permite personalizar:
 │   └── options.js
 └── generate_icons.js   # Script utilitario para regenerar iconos si se desea
 ```
+
+---
+
+## 🔒 Seguridad y Privacidad
+
+Este proyecto ha sido diseñado bajo estándares estrictos de ciberseguridad y privacidad del usuario:
+
+- **100% Local:** No se utiliza ningún servidor intermediario ni backend propio. Toda la lógica se ejecuta localmente en el navegador Chrome.
+- **Sin Credenciales Almacenadas:** La extensión no solicita, no lee ni almacena contraseñas o tokens OAuth2; consulta el feed nativo de Gmail utilizando la sesión activa que ya tienes abierta en el navegador.
+- **Sin Telemetría ni Rastreadores:** Libre de scripts de analítica de terceros (sin Google Analytics, Mixpanel, etc.).
+- **Permisos Mínimos:** Acceso restringido exclusivamente al dominio `https://mail.google.com/*` para obtener el conteo de correos no leídos.
+- **Código Abierto y Auditable:** Todo el código fuente está disponible públicamente bajo licencia Apache 2.0 y cuenta con directivas de desarrollo seguro en [GEMINI.md](GEMINI.md) y política de reporte en [SECURITY.md](SECURITY.md).
+
