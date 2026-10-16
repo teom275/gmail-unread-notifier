@@ -6,6 +6,10 @@ Extensión de Chrome (Manifest V3) diseñada como un acceso directo rápido a Gm
 - **Sin correos sin leer (al día):** El icono se muestra en **blanco y negro (escala de grises)**.
 - **Acceso directo inteligente:** Al hacer clic en el icono, si ya tienes una pestaña de Gmail abierta en cualquier ventana, se enfoca automáticamente (evitando duplicar pestañas). Si no está abierta, abre una nueva.
 
+[![Licencia Apache 2.0](https://img.shields.io/badge/Licencia-Apache%202.0-blue.svg)](LICENSE)
+[![Manifest V3](https://img.shields.io/badge/Chrome-Manifest%20V3-success.svg)](#)
+[![Invitame un cafecito](https://img.shields.io/badge/Cafecito-Invitame%20un%20café-FFA500?style=for-the-badge&logo=coffeescript&logoColor=white)](https://cafecito.app/napalm275)
+
 ---
 
 ## 🚀 Cómo instalar la extensión en Google Chrome
@@ -90,4 +94,14 @@ Este proyecto ha sido diseñado bajo estándares estrictos de ciberseguridad y p
 - **Sin Telemetría ni Rastreadores:** Libre de scripts de analítica de terceros (sin Google Analytics, Mixpanel, etc.).
 - **Permisos Mínimos:** Acceso restringido exclusivamente al dominio `https://mail.google.com/*` para obtener el conteo de correos no leídos.
 - **Código Abierto y Auditable:** Todo el código fuente está disponible públicamente bajo licencia Apache 2.0 y cuenta con directivas de desarrollo seguro en [GEMINI.md](GEMINI.md) y política de reporte en [SECURITY.md](SECURITY.md).
+
+---
+
+## ☕ Apoyar el proyecto / Donaciones
+
+Si esta extensión te resulta útil para tu día a día y te ayuda a mantener tu bandeja organizada, podés apoyar su desarrollo invitándome un cafecito:
+
+[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_5.png)](https://cafecito.app/napalm275)
+
+👉 **[cafecito.app/napalm275](https://cafecito.app/napalm275)**
 
