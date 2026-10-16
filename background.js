@@ -138,7 +138,7 @@ async function openGmail() {
   const gmailUrl = `https://mail.google.com/mail/u/${settings.accountIndex}/`;
 
   try {
-    const tabs = await chrome.tabs.query({ url: '*://mail.google.com/*' });
+    const tabs = await chrome.tabs.query({ url: 'https://mail.google.com/*' });
     if (tabs && tabs.length > 0) {
       // Find the first matching tab
       const tab = tabs[0];
