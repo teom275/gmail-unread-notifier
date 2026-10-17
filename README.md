@@ -6,15 +6,22 @@ Extensión de Chrome (Manifest V3) diseñada como un acceso directo rápido a Gm
 - **Sin correos sin leer (al día):** El icono se muestra en **blanco y negro (escala de grises)**.
 - **Acceso directo inteligente:** Al hacer clic en el icono, si ya tienes una pestaña de Gmail abierta en cualquier ventana, se enfoca automáticamente (evitando duplicar pestañas). Si no está abierta, abre una nueva.
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Disponible-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/acceso-directo-para-gmail/bagneaeakongenjbmjobcljlknjjgnmh)
+[![GitHub](https://img.shields.io/badge/GitHub-Repositorio%20Oficial-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/teom275/gmail-unread-notifier)
 [![Licencia Apache 2.0](https://img.shields.io/badge/Licencia-Apache%202.0-blue.svg)](LICENSE)
 [![Manifest V3](https://img.shields.io/badge/Chrome-Manifest%20V3-success.svg)](#)
 [![Invitame un cafecito](https://img.shields.io/badge/Cafecito-Invitame%20un%20café-FFA500?style=for-the-badge&logo=coffeescript&logoColor=white)](https://cafecito.app/napalm275)
 
 ---
 
-## 🚀 Cómo instalar la extensión en Google Chrome
+## 🚀 Instalación
 
-Para instalar y probar la extensión en tu navegador, sigue estos sencillos pasos:
+### Opción 1: Desde la Chrome Web Store (Recomendada)
+Instálala con un solo clic desde la tienda oficial de Google:
+👉 **[Descargar en Chrome Web Store](https://chromewebstore.google.com/detail/acceso-directo-para-gmail/bagneaeakongenjbmjobcljlknjjgnmh)**
+
+### Opción 2: Instalación manual desde el código (Modo desarrollador)
+Si prefieres probar el código fuente localmente:
 
 1. Abre Google Chrome y escribe en la barra de direcciones:
    ```text

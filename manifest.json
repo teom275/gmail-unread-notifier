@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Acceso Directo para Gmail",
   "short_name": "Acceso Gmail",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Acceso directo a Gmail con indicador visual: en color al recibir correos no leídos y en escala de grises al estar al día.",
   "homepage_url": "https://github.com/teom275/gmail-unread-notifier",
   "icons": {
