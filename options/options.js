@@ -37,6 +37,7 @@ function renderState(state) {
     const count = state.unreadCount;
     if (count > 0) {
       previewIcon.src = '../icons/color-48.png';
+      previewBadge.style.background = '';
       if (showBadge) {
         previewBadge.style.display = 'block';
         previewBadge.textContent = count > 99 ? '99+' : count;
