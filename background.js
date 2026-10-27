@@ -97,10 +97,15 @@ async function checkUnread() {
     const response = await fetch(feedUrl, {
       method: 'GET',
       credentials: 'include',
-      cache: 'no-store'
+      cache: 'no-store',
+      redirect: 'manual'
     });
 
-    if (response.status === 200) {
+    if (response.type === 'opaqueredirect') {
+      // Gmail redirects to the Google sign-in page when there is no session
+      state.status = 'unauthorized';
+      state.message = 'No autenticado en Gmail. Inicia sesión en tu cuenta.';
+    } else if (response.status === 200) {
       const xmlText = await response.text();
       const countMatch = xmlText.match(/<fullcount>(\d+)<\/fullcount>/i);
 
@@ -132,31 +137,39 @@ async function checkUnread() {
   return state;
 }
 
-// Open or switch to Gmail tab
+// Open or switch to the Gmail tab of the configured account
 async function openGmail() {
   const settings = await getSettings();
   const gmailUrl = `https://mail.google.com/mail/u/${settings.accountIndex}/`;
 
   try {
-    const tabs = await chrome.tabs.query({ url: 'https://mail.google.com/*' });
+    const tabs = await chrome.tabs.query({ url: `${gmailUrl}*` });
     if (tabs && tabs.length > 0) {
-      // Find the first matching tab
       const tab = tabs[0];
       await chrome.tabs.update(tab.id, { active: true });
       if (tab.windowId) {
         await chrome.windows.update(tab.windowId, { focused: true });
       }
     } else {
-      // No Gmail tab open: create one
+      // No tab for this account: create one
       await chrome.tabs.create({ url: gmailUrl });
     }
   } catch (err) {
     console.error('Error al abrir Gmail:', err);
     await chrome.tabs.create({ url: gmailUrl });
   }
+}
 
-  // Trigger a fresh check after clicking
-  setTimeout(checkUnread, 1500);
+// Check at most once per MIN_CHECK_GAP_MS; if skipped, retry later via alarm
+const MIN_CHECK_GAP_MS = 15000;
+
+async function checkUnreadThrottled() {
+  const { lastCheckState } = await chrome.storage.local.get('lastCheckState');
+  if (lastCheckState && Date.now() - lastCheckState.timestamp < MIN_CHECK_GAP_MS) {
+    chrome.alarms.create('recheckGmail', { when: Date.now() + MIN_CHECK_GAP_MS });
+    return;
+  }
+  await checkUnread();
 }
 
 // Setup background alarms
@@ -212,7 +225,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 
 // Event: Alarm fired
 chrome.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === 'checkGmail') {
+  if (alarm.name === 'checkGmail' || alarm.name === 'recheckGmail') {
     checkUnread();
   }
 });
@@ -230,39 +243,13 @@ chrome.runtime.onStartup.addListener(() => {
   checkUnread();
 });
 
-// Real-time synchronization: listen to tab title updates on Gmail tabs
+// Gmail updates its tab title when the unread count changes: use it only as a
+// trigger to re-read the (reliable) feed, never as the source of the count.
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (tab.url && tab.url.includes('mail.google.com')) {
-    // If the tab title changed, check if it has unread count info: e.g. "(3) Recibidos - ..."
-    if (changeInfo.title) {
-      const match = changeInfo.title.match(/\((\d+)\)/);
-      if (match) {
-        const count = parseInt(match[1], 10);
-        updateUI({
-          status: 'ok',
-          unreadCount: count,
-          timestamp: Date.now()
-        });
-      } else if (changeInfo.title.includes('Gmail') || changeInfo.title.includes('Recibidos') || changeInfo.title.includes('Inbox')) {
-        // Tab is open and title has no parenthesis count -> 0 unread
-        updateUI({
-          status: 'ok',
-          unreadCount: 0,
-          timestamp: Date.now()
-        });
-      }
-    }
-
-    // If navigation completed, do a clean check
-    if (changeInfo.status === 'complete') {
-      setTimeout(checkUnread, 1000);
-    }
+  if (tab.url && tab.url.startsWith('https://mail.google.com/') &&
+      (changeInfo.title || changeInfo.status === 'complete')) {
+    checkUnreadThrottled();
   }
-});
-
-// When a tab is closed, if it might have been Gmail, verify count
-chrome.tabs.onRemoved.addListener(() => {
-  setTimeout(checkUnread, 1500);
 });
 
 // Messages from options page or tests
